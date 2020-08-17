@@ -1,0 +1,137 @@
+# 受限线性表
+
+## 栈
+
+1. 这一方面的题一般都比较简单，只需要记得只要入栈了，那么就一定这个元素之前的元素都入过栈
+
+2. 应用的话有波兰表达式，一般考察逆波兰表达式
+
+   1. 从左往右遇到数字加入表达式
+   2. 遇到（加入栈
+   3. 遇到运算符，将运算优先级高于它的运算符全部弹出
+   4. 遇到）将所有的运算符弹出来
+
+3. 链栈
+
+   ```c
+   typedef struct queuenode{
+     int data;
+     queuenode *next;
+   } Queue*,QueueNode
+     
+    void InQueue(Queue &Q,int value){
+     QueueNode *node=new QueueNode;
+     node->data=value;
+     node->next=Q->next;
+     Q->next=node;
+   }
+   
+   void OutQueue(Queue &Q,int &value){
+       value=Q->next->data;
+       QueuNode * node=Q->next;
+       Q->next=node->next;
+       free(node);
+     }
+   
+   bool Empty(Queue Q){
+     if(Q->next==null)
+       return true;
+     else return false;
+   }
+   ```
+
+   
+
+## 队列
+
+由于线性队列在判断队是否满的时候有着不足，所以重点考查内容是
+
+1. 循环队列
+
+   ```c
+   #define MaxSize 50
+   typedef strcut {
+   	int data[MaxSize];
+     int rear,front;
+   } Queue;
+   void InitQueue(Queue &Q){
+     Q.rear=Q.front=0;
+   }
+   void Inqueue(Queue &Q,int value){
+     Q.data[Q.rear]=data;
+     Q.rear=(Q.rear+1)%MaxSize;
+   }
+   void OutQueue(Queue &Q,int &value){
+     value=Q.data[Q.front];
+     Q.front=(Q.front+1)%MaxSize;
+   }
+   bool full(Queue Q){
+     if((Q.rear+1)%MaxSize)==Q.front)
+       return true;
+     else return false;
+   }
+   bool Empty(Queue Q){
+     if(length(Q)==0)
+       return true;
+     else 
+       return false;
+   }
+   int length(Queue Q){
+     return((Q.rear-Q.front+MaxSize)%MaxSize);
+   }
+   ```
+
+   
+
+2. 链式队列
+
+   ```c
+   typedef struct Node{
+     int data;
+     Node *next;
+   }QueueNode;
+   typedef struct queue{
+     Node *rear,*front;
+   }Queue;
+   void InitQueue(Queue &Q){
+    Q.front=Q.rear=new QueueNode;
+   }
+    void InQueue(Queue &Q,int value){
+      QueueNode * node= new QueueNode;
+      node->data=value;
+      Q.rear->next=node;
+      Q.rear=node;
+    }
+   	
+    void OutQueue(Queue &Q,int &value){
+      if(Q.front->next==null){
+        free (Q);
+        return;
+      }
+      QueueNode * node = Q.front->next;
+      value=node->data;
+      Q.front->next=node->next;
+      free(node);
+    }
+   
+   bool Empty(Queue Q){
+     if(Q.front->next==nullptr)
+       return true;
+     else return false;
+   }
+   ```
+
+3. 双端队列
+
+## 矩阵的压缩存储
+
+### 对称
+
+### 三角
+
+### 三对角
+
+**最值得注意的是看清楚下标开始的值是0还是1**
+
+**是行优先还是列优先**
+
